@@ -12,24 +12,51 @@ body {
 
 h1 {
   color: #333;
+  margin-bottom: 0.5rem;
 }
 
 h2 {
   color: #666;
   font-weight: normal;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  max-width: 800px;
+}
+
+.movie-card {
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
 }
 
 h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
   color: #333;
 }
 
 input,
 textarea {
-  width: 300px;
+  width: calc(100% - 22px); /* Adjust width to account for padding and border */
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
 }
 
 button {
@@ -40,22 +67,11 @@ button {
   background-color: #007bff;
   color: white;
   cursor: pointer;
+  font-size: 16px;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-div {
-  background-color: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 button.delete {
@@ -66,16 +82,34 @@ button.delete:hover {
   background-color: #c82333;
 }
 
-.checked {
-  color: orange;
+#rating {
+  display: flex;
+  margin-bottom: 10px;
 }
 
 #rating .fa-star {
   font-size: 24px;
   color: #ccc;
   cursor: pointer;
+  margin: 0 2px;
 }
 
 #rating .fa-star.checked {
+  color: #ffcc00;
+}
+
+.movie-rating {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.movie-rating .fa-star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.movie-rating .fa-star.checked {
   color: #ffcc00;
 }

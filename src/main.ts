@@ -17,9 +17,11 @@ async function renderMovies() {
 
   movies.data.forEach((movie) => {
     const newMovie = document.createElement("div");
+    newMovie.classList.add("movie-card");
     const newMovieTitle = document.createElement("h3");
     const newMovieReview = document.createElement("p");
-    const newMovieRating = document.createElement("p");
+    const newMovieRating = document.createElement("div");
+    newMovieRating.classList.add("movie-rating");
     const deleteButton = document.createElement("button");
 
     deleteButton.innerText = "Delete";
