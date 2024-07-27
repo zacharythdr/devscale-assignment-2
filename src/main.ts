@@ -100,7 +100,7 @@ submitBtn?.addEventListener("click", async (e) => {
   e.preventDefault();
   const title = titleInput.value;
   const review = reviewInput.value;
-  const rating = selectedRating; // Get the selected rating
+  const rating = selectedRating; 
 
   try {
     await fetch(API_URL, {
