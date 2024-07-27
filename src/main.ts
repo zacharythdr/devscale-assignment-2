@@ -27,6 +27,11 @@ async function renderMovies() {
     newMovieReview.textContent = movie.review;
     newMovieRating.textContent = movie.rating.toString();
 
+    deleteButton.addEventListener("click", async () => {
+      await deleteMovie(movie._id);
+      window.location.reload();
+    });
+
     newMovie.append(
       newMovieTitle,
       newMovieReview,
@@ -67,3 +72,16 @@ submitBtn?.addEventListener("click", async () => {
 });
 
 //Delete Movie
+async function deleteMovie(movieId: string) {
+  try {
+    await fetch(API_URL, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([movieId]),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
