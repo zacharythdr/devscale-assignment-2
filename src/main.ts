@@ -15,6 +15,8 @@ async function renderMovies() {
     return;
   }
 
+  const movieList = document.querySelector(".movieList") as HTMLBodyElement;
+
   movies.data.forEach((movie) => {
     const newMovie = document.createElement("div");
     newMovie.classList.add("movie-card");
@@ -51,7 +53,7 @@ async function renderMovies() {
       newMovieRating,
       deleteButton
     );
-    document.body.append(newMovie);
+    movieList.append(newMovie);
   });
 }
 
