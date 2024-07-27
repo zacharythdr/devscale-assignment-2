@@ -15,17 +15,28 @@ async function renderMovies() {
     return;
   }
 
-  movies.data.map((movie) => {
+  movies.data.forEach((movie) => {
     const newMovie = document.createElement("div");
     const newMovieTitle = document.createElement("h3");
     const newMovieReview = document.createElement("p");
     const newMovieRating = document.createElement("p");
     const deleteButton = document.createElement("button");
 
-    deleteButton.innerText = "delete";
+    deleteButton.innerText = "Delete";
+    deleteButton.classList.add("delete");
+
     newMovieTitle.textContent = movie.title;
     newMovieReview.textContent = movie.review;
-    newMovieRating.textContent = movie.rating.toString();
+
+    // Render star buat rating
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement("span");
+      star.classList.add("fa", "fa-star");
+      if (i <= movie.rating) {
+        star.classList.add("checked");
+      }
+      newMovieRating.appendChild(star);
+    }
 
     deleteButton.addEventListener("click", async () => {
       await deleteMovie(movie._id);
@@ -44,17 +55,48 @@ async function renderMovies() {
 
 renderMovies();
 
-//Create new Movie
-
 const titleInput = document.getElementById("title") as HTMLInputElement;
 const reviewInput = document.getElementById("review") as HTMLTextAreaElement;
-const ratingInput = document.getElementById("rating") as HTMLInputElement;
 const submitBtn = document.getElementById("submitBtn");
 
-submitBtn?.addEventListener("click", async () => {
+// Rating using stars
+const stars = document.querySelectorAll("#rating .fa-star");
+let selectedRating = 0;
+
+stars.forEach((star, index) => {
+  star.addEventListener("mouseover", () => {
+    resetStars();
+    highlightStars(index);
+  });
+
+  star.addEventListener("mouseout", resetStars);
+
+  star.addEventListener("click", () => {
+    selectedRating = index + 1;
+    highlightStars(index);
+  });
+});
+
+function resetStars() {
+  stars.forEach((star) => star.classList.remove("checked"));
+  stars.forEach((star, index: number) => {
+    if (index < selectedRating) {
+      star.classList.add("checked");
+    }
+  });
+}
+
+function highlightStars(index: number) {
+  for (let i = 0; i <= index; i++) {
+    stars[i].classList.add("checked");
+  }
+}
+
+submitBtn?.addEventListener("click", async (e) => {
+  e.preventDefault();
   const title = titleInput.value;
   const review = reviewInput.value;
-  const rating = ratingInput.value;
+  const rating = selectedRating; // Get the selected rating
 
   try {
     await fetch(API_URL, {
@@ -71,7 +113,6 @@ submitBtn?.addEventListener("click", async () => {
   }
 });
 
-//Delete Movie
 async function deleteMovie(movieId: string) {
   try {
     await fetch(API_URL, {
