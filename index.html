@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies I've Watched</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <h1>Movies i've watched 🍿</h1>
+    <h2>Collection of movies i've watched,a sneak peak of my taste in film</h2>
+
+    <div class="container">
+      <div id="addMovieForm">
+        <h3>Add Movie</h3>
+        <form action="">
+          <label for="">Title:</label>
+          <input id="title" placeholder="Title" />
+          <label for="">Thoughts:</label>
+          <textarea id="review" placeholder="Review"></textarea>
+          <label for="">Rating:</label>
+          <div id="rating">
+            <span class="fa fa-star" data-value="1"></span>
+            <span class="fa fa-star" data-value="2"></span>
+            <span class="fa fa-star" data-value="3"></span>
+            <span class="fa fa-star" data-value="4"></span>
+            <span class="fa fa-star" data-value="5"></span>
+          </div>
+          <button id="submitBtn">Add review</button>
+        </form>
+      </div>
+
+      <div class="movieList"></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
